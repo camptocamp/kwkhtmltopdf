@@ -11,9 +11,10 @@ FROM ubuntu:18.04
 
 RUN set -x \
   && apt update \
-  && apt -y install --no-install-recommends wget ca-certificates fonts-liberation2 fonts-nanum-coding fonts-horai-umefont fonts-wqy-microhei \
-  && wget -q -O /tmp/wkhtmltox.deb  https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.1/wkhtmltox-0.12.1_linux-bionic-amd64.deb \
-  && echo "da39a3ee5e6b4b0d3255bfef95601890afd80709  /tmp/wkhtmltox.deb" | sha1sum -c - \
+  && apt -y install --no-install-recommends wget ca-certificates fonts-liberation2 fonts-nanum-coding fonts-horai-umefont fonts-wqy-microhei 
+
+RUN wget -q -O /tmp/wkhtmltox.deb https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.1/wkhtmltox-0.12.1_linux-wheezy-amd64.deb \
+  && echo "07d397b32f91722de683e8777df2ddd6c49662c2 /tmp/wkhtmltox.deb" | sha1sum -c - \
   && apt -y install /tmp/wkhtmltox.deb \
   && apt -y purge wget --autoremove \
   && apt -y clean \
