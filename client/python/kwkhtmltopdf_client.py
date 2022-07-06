@@ -9,7 +9,7 @@ import sys
 
 import requests
 
-CHUNK_SIZE = 2 ** 16
+CHUNK_SIZE = 2**16
 
 
 class Error(Exception):
@@ -26,6 +26,7 @@ class ServerError(Error):
 
 def wkhtmltopdf(args):
     url = os.getenv("KWKHTMLTOPDF_SERVER_URL")
+    hostname = os.getenv("HOSTNAME")
     parts = []
 
     def add_option(option):
@@ -65,7 +66,7 @@ def wkhtmltopdf(args):
         add_option("-h")
 
     try:
-        r = requests.post(url, files=parts)
+        r = requests.post(url, files=parts, headers={"Host": hostname})
         r.raise_for_status()
 
         if output == "-":
