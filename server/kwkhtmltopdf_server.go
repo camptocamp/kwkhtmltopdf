@@ -75,6 +75,7 @@ func httpAbort(w http.ResponseWriter, err error, addr string) {
 
 func handler(w http.ResponseWriter, r *http.Request) {
 	debug_enabled := os.Getenv("DEBUG")
+	no_storage_cleaning := os.Getenv("NO_STORAGE_CLEANING")
 	if debug_enabled != "" {
 		log.Info().Str("Method", r.Method).Str("Url",r.URL.Path).Msg("Parameters")
 	}
@@ -108,8 +109,11 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		httpError(w, err, http.StatusNotFound, addr)
 		return
 	}
-	defer os.RemoveAll(tmpdir)
-
+	// Test if we want to remove storage, in case of debugging
+	// 
+	if len(no_storage_cleaning) == 0 {
+		defer os.RemoveAll(tmpdir)
+	}
 	// parse request
 	reader, err := r.MultipartReader()
 	if err != nil {
