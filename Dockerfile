@@ -1,11 +1,11 @@
 # first stage: build kwkhtmltopdf_server
 
-FROM golang:1.18.3
+FROM golang:1.21.5
 RUN mkdir /tmp/kwkhtml
 WORKDIR /tmp/kwkhtml
 COPY server/kwkhtmltopdf_server.go .
 RUN go mod init kwkhtml
-RUN go get -u github.com/rs/zerolog/log@v1.27.0
+RUN go get -u github.com/rs/zerolog/log@v1.31.0
 RUN go get -u github.com/pkg/errors@v0.9.1
 
 RUN go build kwkhtmltopdf_server.go
@@ -18,7 +18,7 @@ RUN set -x \
   && apt update \
   && apt -y install --no-install-recommends wget ca-certificates fonts-liberation2 fonts-nanum-coding fonts-horai-umefont fonts-wqy-microhei \  
   && wget -q -O /tmp/wkhtmltox.deb https://github.com/odoo/wkhtmltopdf/releases/download/nightly/wkhtmltox_0.13.0-1.nightly.bookworm_amd64.deb \
-  && echo "a8f28ec5a71d18a4791e48ece56ad7395fd0f935 /tmp/wkhtmltox.deb" | sha1sum -c - \
+  && echo "8b3e6ec574f31e4f19644f2c9e00bb929a1cb207 /tmp/wkhtmltox.deb" | sha1sum -c - \
   && apt -y install /tmp/wkhtmltox.deb \
   && apt -y purge wget --autoremove \
   && apt -y clean \

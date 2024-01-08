@@ -1,3 +1,9 @@
+
+# 2.0.1 (2024-01-05)
+
+Use new build from odoo for wkhtmltopdf bin, use new bookworm debian
+Bump zerolog extra go package 
+
 # 0.9.3 (2020-04-15)
 
 Remove gsfonts and xfonts-100dpi. Use fonts-liberation2 instead
