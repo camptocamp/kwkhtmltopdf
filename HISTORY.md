@@ -1,4 +1,7 @@
 
+# 2.0.2 (2024-01-31)
+switch back to old package 0.12.6.1
+Bump zerolog extra go package 
 # 2.0.1 (2024-01-05)
 
 Use new build from odoo for wkhtmltopdf bin, use new bookworm debian
