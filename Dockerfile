@@ -17,8 +17,8 @@ FROM debian:bookworm-slim
 RUN set -x \
   && apt update \
   && apt -y install --no-install-recommends wget ca-certificates fonts-liberation2 fonts-nanum-coding fonts-horai-umefont fonts-wqy-microhei \  
-  && wget -q -O /tmp/wkhtmltox.deb https://github.com/odoo/wkhtmltopdf/releases/download/nightly/wkhtmltox_0.13.0-1.nightly.bookworm_amd64.deb \
-  && echo "8b3e6ec574f31e4f19644f2c9e00bb929a1cb207 /tmp/wkhtmltox.deb" | sha1sum -c - \
+  && wget -q -O /tmp/wkhtmltox.deb https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-3/wkhtmltox_0.12.6.1-3.bookworm_amd64.deb \
+  && echo "e9f95436298c77cc9406bd4bbd242f4771d0a4b2 /tmp/wkhtmltox.deb" | sha1sum -c - \
   && apt -y install /tmp/wkhtmltox.deb \
   && apt -y purge wget --autoremove \
   && apt -y clean \
